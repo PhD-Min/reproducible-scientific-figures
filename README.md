@@ -1,8 +1,26 @@
 # Reproducible Scientific Figures
 
-`reproducible-scientific-figures` is a Codex skill for building research figure workflows from data to editable SVG outputs.
+`reproducible-scientific-figures` is a Codex skill for building scientific figure workflows from data to editable SVG outputs.
 
-It is designed for scientific work where a figure should not be a one-off image. A figure should have a traceable chain:
+Most AI figure workflows stop at "make a plot." This skill pushes Codex to produce a reproducible figure bundle: figure-ready data, plotting code, editable SVG, optional preview/final exports, and validation notes.
+
+```mermaid
+flowchart LR
+  A["source data"] --> B["processing / statistics"]
+  B --> C["figure-ready data"]
+  C --> D["plotting code"]
+  D --> E["editable SVG"]
+  E --> F["preview / final exports"]
+  F --> G["manuscript or submission package"]
+  C --> H["validation report"]
+  E --> H
+```
+
+## Why This Exists
+
+Scientific figures are evidence-bearing artifacts. They should not become one-off PNGs with unclear data, hidden filters, missing code, or unverifiable plotted values.
+
+This skill helps Codex keep the figure chain explicit:
 
 ```text
 source data -> processing/statistics -> figure-ready data -> plotting code -> editable SVG -> preview/final exports -> manuscript or submission package
@@ -24,7 +42,7 @@ source data -> processing/statistics -> figure-ready data -> plotting code -> ed
 - It does not replace manual scientific review, figure design judgment, or journal-specific requirements.
 - It does not treat PNG/JPEG previews as the primary scientific figure artifact.
 
-## Install
+## Quick Start
 
 Copy the installable skill folder into your Codex skills directory:
 
@@ -32,22 +50,29 @@ Copy the installable skill folder into your Codex skills directory:
 Copy-Item -Recurse .\reproducible-scientific-figures "$env:USERPROFILE\.codex\skills\"
 ```
 
-The installable skill folder is:
+Then ask Codex:
+
+```text
+Use reproducible-scientific-figures to create a data-to-SVG pipeline for this CSV.
+First create figure-ready data, then plotting code, editable SVG, optional preview exports, and a validation report.
+```
+
+## Repository Layout
 
 ```text
 reproducible-scientific-figures/
   SKILL.md
   agents/
+    openai.yaml
   references/
+    figure-pipeline.md
+    figure-spec-schema.md
+    export-bundle.md
+    validation-checklist.md
   scripts/
+    validate_figure_bundle.py
   examples/
-```
-
-## Example Prompt
-
-```text
-Use reproducible-scientific-figures to create a data-to-SVG pipeline for this CSV.
-First create figure-ready data, then plotting code, editable SVG, optional preview exports, and a validation report.
+    basic-line-figure/
 ```
 
 ## Validate
@@ -65,3 +90,7 @@ python .\reproducible-scientific-figures\scripts\validate_figure_bundle.py .\rep
 ```
 
 The bundle validator is read-only. It checks required fields and file presence. It does not verify scientific correctness.
+
+## Status
+
+This is an initial public version. The safest use is as a workflow guardrail: let Codex build or audit the data-to-SVG chain, then let the researcher review the scientific claim, figure design, and journal-specific export requirements.
