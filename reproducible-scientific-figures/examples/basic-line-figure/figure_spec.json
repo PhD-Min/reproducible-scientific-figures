@@ -1,0 +1,30 @@
+{
+  "figure_id": "Fig_Example_1",
+  "purpose": "Show a synthetic response trajectory across years for two treatments.",
+  "input_data": ["data/source_data.csv"],
+  "figure_ready_data": "data/figure_ready_data.csv",
+  "plot_code": "scripts/make_figure.R",
+  "plot_type": "line_plot",
+  "x_axis": {
+    "field": "year",
+    "label": "Year",
+    "unit": "calendar_year"
+  },
+  "y_axis": {
+    "field": "response_index",
+    "label": "Response index",
+    "unit": "unitless_index"
+  },
+  "grouping": {
+    "field": "treatment",
+    "label": "Treatment"
+  },
+  "outputs": {
+    "svg": "outputs/Fig_Example_1.svg"
+  },
+  "validation": {
+    "check_file_presence": true,
+    "check_axis_labels": true,
+    "check_representative_values": true
+  }
+}

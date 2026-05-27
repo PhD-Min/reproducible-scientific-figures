@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reproducible Scientific Figures"
+  short_description: "Build reproducible data-to-SVG scientific figure pipelines."
+  default_prompt: "Create a reproducible scientific figure pipeline from data to figure-ready table, plotting code, editable SVG, and validation report."

@@ -1,0 +1,7 @@
+year,treatment,response_index
+2020,Control,0.42
+2021,Control,0.45
+2022,Control,0.48
+2020,Restored,0.41
+2021,Restored,0.56
+2022,Restored,0.68
